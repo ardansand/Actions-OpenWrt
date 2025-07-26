@@ -158,14 +158,3 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-- name: Build OpenWrt
-  run: |
-    make defconfig
-    make -j$(nproc) V=s
-
-- name: Rename firmware
-  run: |
-    cd bin/targets/*/*
-    for file in *; do
-      mv "$file" "HeriWRT-${file}"
-    done
